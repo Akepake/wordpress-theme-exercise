@@ -28,3 +28,33 @@ function loadjs(){
 }
 
 add_action('wp_enqueue_scripts', 'loadjs');
+
+add_theme_support('menus');
+
+register_nav_menus(
+
+    array(
+        'top-menu' => __('Top Menu', 'theme')
+    )
+    );
+
+function page_titles() {
+    add_theme_support('title-tag');
+}
+
+add_action('wp_enqueue_scripts', 'page_titles');
+
+function company_post_types(){
+    register_post_type('company_info', array(
+        'public' => true,
+        'labels' => array(
+            'name' => 'Company Info',
+            'add_new_item' => 'Add new Info',
+            'edit_item' => 'Edit Info',
+            'all_items' => 'All Info'
+        )
+        ));
+}
+
+add_action('init', 'company_post_types');
+

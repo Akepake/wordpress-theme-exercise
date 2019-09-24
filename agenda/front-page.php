@@ -2,14 +2,27 @@
 
 
 <div class="hero">
-    <div class="text-box"><h1>We do tables</h1><h2>Wood & Steel</h2></div>
+    <div class="text-box"><h1><?php the_title();?></h1><h2><?php if(function_exists('the_subtitle')) the_subtitle(); ?></h2></div>
 </div>
-<div class="container">
+<div class="container container--narrow">
 <section class="testimonials">
-    <div class="row">
-    <div class="col-sm"><h3>philosophy</h3><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae ipsum voluptatibus dolorum, consequatur fuga voluptatem. Explicabo laboriosam delectus eligendi, inventore, facere perspiciatis nulla enim aliquam dolor atque voluptas sequi rerum.</p></div>
-    <div class="col-sm"><h3>sit & sat</h3><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae ipsum voluptatibus dolorum, consequatur fuga voluptatem. Explicabo laboriosam delectus eligendi, inventore, facere perspiciatis nulla enim aliquam dolor atque voluptas sequi rerum.</p></div>
-    <div class="col-sm"><h3>we do good</h3><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae ipsum voluptatibus dolorum, consequatur fuga voluptatem. Explicabo laboriosam delectus eligendi, inventore, facere perspiciatis nulla enim aliquam dolor atque voluptas sequi rerum.</p></div>
+    <div class="row posts">
+
+
+    <?php
+    $homepageInfo = new WP_query(array(
+        'posts_per_page' => 3,
+        'post_type' => 'company_info'
+    ));
+    while($homepageInfo->have_posts()){
+        $homepageInfo->the_post();?>
+    <div class="col-sm"><h3><?php the_title();?></h3>
+    <?php the_excerpt();?>
+
+<a class="link" href="<?php the_permalink();?>">Read more</a>
+</div>
+   <?php }?>
+
     </div>
 </section>
 </div>

@@ -10,6 +10,12 @@
 <body <?php body_class();?>>
 
 <div class="header">
-        <div class="logo"><h1>wedo</h1></div>
+        <div class="logo"><h1><a class="test" href="<?php echo site_url();?>">wedo</a></h1></div>
+        <?php wp_nav_menu(
+            array(
+                'theme_location' => 'top-menu',
+                'menu_class' => 'navigation'
+            )
+            );?>
     </div>
     
